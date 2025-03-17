@@ -82,5 +82,7 @@ public class StringOperations
         System.out.println("Number of words: " + wordCount);
         System.out.println("Number of vowels: " + vowelCount);
         System.out.println("Number of consonants: " + consonantCount);
+
+        scanner.close();
     }
 }
