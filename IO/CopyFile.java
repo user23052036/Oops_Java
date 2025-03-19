@@ -20,14 +20,11 @@ class CopyFile
 
         try 
         {
-            // Open the source file for reading
             fin = new FileInputStream(args[0]);
-
-            // Open the destination file for writing
             fout = new FileOutputStream(args[1]);
 
-            // Read from the source file and write to the destination file
-            do {
+            do 
+            {
                 i = fin.read();
                 if (i != -1) fout.write(i);
             } while (i != -1);
