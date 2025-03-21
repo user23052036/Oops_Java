@@ -1,0 +1,17 @@
+1. The statement Class.forName("oracle.jdbc.driver.OracleDriver"); dynamically loads 
+the Oracle JDBC driver class into memory. This triggers the   static block of the 
+OracleDriver class, which automatically registers the driver with the DriverManager.
+
+This step is necessary for older versions of JDBC (prior to JDBC 4.0) to enable 
+database connections using DriverManager.getConnection().
+
+In short:
+
+It loads and registers the Oracle JDBC driver.
+Without this, the application cannot connect to an Oracle database in legacy JDBC setups.
+----------------------------------------------------------------------------------------------------
+
+2. - javac -cp "JDBC/lib/ojdbc8.jar" -d bin JDBC/DemoprepareStatement.java
+   - java -cp "JDBC/lib/ojdbc8.jar;bin" DemoprepareStatement
+
+-----------------------------------------------------------------------------------------------
