@@ -9,12 +9,23 @@ public class OracleJDBCExample
     private static final String password = "hr";
     public static void main(String[] args) 
     {
+        try 
+        {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            System.out.println("Oracle JDBC Driver Registered!");
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("Error: Unable to load driver class!");
+            System.out.println(e.getMessage());;
+        }
+
         try
         {
-            Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+            Connection con = DriverManager.getConnection(jdbcURL, username, password);
             System.out.println("Connected to Oracle Database!");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());;
         }
     }
 }
