@@ -15,3 +15,8 @@ Without this, the application cannot connect to an Oracle database in legacy JDB
    - java -cp "JDBC/lib/ojdbc8.jar;bin" DemoprepareStatement
 
 -----------------------------------------------------------------------------------------------
+
+- executeUpdate() is used for SQL statements like INSERT, UPDATE, or DELETE, which modify the database.
+- Since you're using a SELECT query, you should use executeQuery() instead:
+
+------------------------------------------------------------------------------------------------
