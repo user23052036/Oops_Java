@@ -24,8 +24,10 @@ public class DemoTransaction
 
             if (rs.next()) 
             {
+                System.out.println("Sender details validated successfully.");
                 int balance = rs.getInt("balance");
-                System.out.println("Balance found for acc_no " + acc_no + ": " + balance);
+                System.out.println("Balance found on " + name + "'s account = " + balance);
+                System.out.println(amount+" is send current balance is "+(balance-amount));
                 return balance > 0 && amount > 0 && balance >= amount;
             } 
             else System.out.println("No account found with acc_no: " + acc_no + " and name: " + name);
@@ -75,7 +77,7 @@ public class DemoTransaction
             Connection con = DriverManager.getConnection(jdbcURL, username, password);
             System.out.println("Connected to Oracle Database!");
 
-            con.setAutoCommit(false); // seeting auto commit to be false if transaction fails
+            con.setAutoCommit(false); 
 
             String query1 = "update Account set balance = balance - ? where acc_no = ?";
             String query2 = "update Account set balance = balance + ? where acc_no = ?";
@@ -102,17 +104,19 @@ public class DemoTransaction
                 System.out.print("Enter Name:-");
                 String r_name = sc.nextLine();
 
-                s_pst.setInt(1, s_amount);
-                s_pst.setInt(2, s_acc_no);
-                r_pst.setInt(1, s_amount);
-                r_pst.setInt(2, r_acc_no);
 
-                if(validate_sender(con,s_acc_no,s_name,s_amount) && validate_receiver(con,r_acc_no,r_name))
+                if(validate_receiver(con,r_acc_no,r_name) && validate_sender(con,s_acc_no,s_name,s_amount))
                 {
+                    s_pst.setInt(1, s_amount);
+                    s_pst.setInt(2, s_acc_no);
+                    r_pst.setInt(1, s_amount);
+                    r_pst.setInt(2, r_acc_no);
+
+
                     s_pst.executeUpdate();
                     r_pst.executeUpdate();
                     con.commit();
-                    System.out.println("Transaction Successull");
+                    System.out.println(".....[[[[Transaction Successull]]]].....");
                     System.out.println("money send "+s_amount+" from "+s_name+" to "+r_name);
                 }
                 else 
