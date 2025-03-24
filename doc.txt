@@ -1,0 +1,43 @@
+# Compile and store .class files in 'Class' folder
+javac -d Class StringOperations.java
+
+# Run from 'Class' folder
+java -cp Class StringOperations      //cp stands for classpath
+
+
+------------------------------------------------------------------------------
+The Scanner.close() method in Java is significant because it releases system 
+resources associated with the Scanner object. Here's why it is important.
+
+Scanner scanner = new Scanner(System.in);
+// Use the scanner for input
+scanner.close();
+
+
+The significance of closing a Scanner is related to resource management and potential memory leaks:
+
+Resource Management: When a Scanner is created, it consumes system resources, especially when 
+reading from files or input streams. Closing the Scanner releases these resources back to the system.
+
+Memory Leaks: If a Scanner is not closed, it can lead to memory leaks, particularly when 
+dealing with file input streams. The Java garbage collector may not be able to dispose of the 
+associated Scanner object properly.
+
+Underlying Stream Closure: For Scanners that wrap closeable streams, calling close() also closes 
+the underlying readable object.
+
+For System.in: Closing a Scanner created with System.in will also close the System.in stream, 
+making it unusable for further input. In this case, it's often better not to close the Scanner.
+
+Program Execution: Your program may still run smoothly without closing the Scanner, especially 
+for short-lived programs or when using System.in. The operating system typically closes all 
+resources when the program terminates.
+
+Best Practice: Despite the program running smoothly, it's considered good practice to close 
+resources when you're done with them. This ensures efficient resource management, especially 
+in larger applications or when dealing with multiple file operations.
+
+In summary, while your program may run without issues if you don't close the Scanner, it's generally 
+recommended to close it to ensure proper resource management and prevent potential issues in more 
+complex scenarios.
+-------------------------------------------------------------------------------
