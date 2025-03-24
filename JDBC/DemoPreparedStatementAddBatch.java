@@ -50,6 +50,7 @@ public class DemoPreparedStatementAddBatch
                 String choice = sc.next();
                 if(choice.toUpperCase().equals("N")) break;
             }
+            sc.close();
 
             int[] arr = pst.executeBatch();
             for(int i=0; i<arr.length; i++)

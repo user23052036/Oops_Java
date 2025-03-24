@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.lang.String;
 import java.sql.SQLException;
@@ -49,6 +48,7 @@ public class DemoStatementAddBatch
                 String choice = sc.next();
                 if(choice.toUpperCase().equals("N")) break;
             }
+            sc.close();
             int[] arr = st.executeBatch();
             for(int i=0; i<arr.length; i++)
                 if(arr[i]==0) System.out.println("Query "+i+" not Executed!");

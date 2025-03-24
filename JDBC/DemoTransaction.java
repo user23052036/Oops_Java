@@ -129,6 +129,7 @@ public class DemoTransaction
                 String choice = sc.next();
                 if(choice.toUpperCase().equals("N")) break;
             }
+            sc.close();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());;
