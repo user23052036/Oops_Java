@@ -1,3 +1,4 @@
+package code.String;
 import java.util.Scanner;
 
 public class StringOperations 
