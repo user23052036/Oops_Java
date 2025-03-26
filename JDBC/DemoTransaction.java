@@ -5,12 +5,43 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+class AccountNotFoundException extends Exception
+{
+    AccountNotFoundException(){super();}
+
+    String toString(String message)
+    {return message;}
+}
+//--------------------------------------------------------------------------------------------------
+
+
 public class DemoTransaction 
 {
     private static final String jdbcURL = "jdbc:oracle:thin:@localhost:1521:XE";
     private static final String username = "HR";
     private static final String password = "hr";
 
+
+    static boolean validate_sender(Connection con, int acc_no) throws AccountNotFoundException
+    {
+        String query = "SELECT balance FROM Account WHERE acc_no = ?";
+        try 
+        {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, acc_no);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {} 
+            else 
+            {
+                throw AccountNotFoundException(acc_no+" not found in the DATABASE !");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("SQL Exception: " + e.getMessage());
+        }
+        return false;
+    }
 
     static boolean validate_sender(Connection con, int acc_no, String name, int amount) 
     {
@@ -87,22 +118,25 @@ public class DemoTransaction
             Scanner sc = new Scanner(System.in);
             while(true)
             {
-                System.out.println("--------------:Enter account details of the sender:-------------");
-                System.out.print("Enter acc number:-");
-                int s_acc_no = sc.nextInt();
-                sc.nextLine();
-                System.out.print("Enter Name:-");
-                String s_name = sc.nextLine();
-                System.out.print("Enter send amount:-");
-                int s_amount = sc.nextInt();
-                sc.nextLine();
+                try
+                {
+                    System.out.println("--------------:Enter account details of the sender:-------------");
+                    System.out.print("Enter acc number:-");
+                    int s_acc_no = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter Name:-");
+                    String s_name = sc.nextLine();
+                    System.out.print("Enter send amount:-");
+                    int s_amount = sc.nextInt();
+                    sc.nextLine();
 
-                System.out.println("--------------:Enter account details of the Receiver:-------------");
-                System.out.print("Enter acc number:-");
-                int r_acc_no = sc.nextInt();
-                sc.nextLine();
-                System.out.print("Enter Name:-");
-                String r_name = sc.nextLine();
+                    System.out.println("--------------:Enter account details of the Receiver:-------------");
+                    System.out.print("Enter acc number:-");
+                    int r_acc_no = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter Name:-");
+                    String r_name = sc.nextLine();
+                }
 
 
                 if(validate_receiver(con,r_acc_no,r_name) && validate_sender(con,s_acc_no,s_name,s_amount))
