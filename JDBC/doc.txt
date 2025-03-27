@@ -20,3 +20,27 @@ Without this, the application cannot connect to an Oracle database in legacy JDB
 - Since you're using a SELECT query, you should use executeQuery() instead:
 
 ------------------------------------------------------------------------------------------------
+
+In Java, when an exception is printed (for example, using System.out.println(e) in a catch block), 
+it calls the exception's toString() method. In your class, you overrode the toString() method to always 
+return "INVALID CREDENTIALS".
+
+Even though you pass "your message" to the constructor, which sets the internal message of the 
+exception (accessible via getMessage()), the toString() method doesn’t use that message. It always 
+returns "INVALID CREDENTIALS".
+
+So, when the exception is caught and printed, you'll see:
+
+INVALID CREDENTIALS
+If you want to see the original message "your message", you could either:
+
+Call e.getMessage(), which would return "your message", or
+
+Modify the toString() method to include the message, for example:
+
+public String toString() {
+    return "INVALID CREDENTIALS: " + getMessage();
+}
+This way, printing the exception would show both the custom text and the message you passed.
+
+---------------------------------------------------------------------------------------------------------
