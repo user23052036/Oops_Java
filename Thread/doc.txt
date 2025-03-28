@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------
+->in SimpleThread.java
+
+Class A: This class implements the Runnable interface. When an instance of A is passed to a Thread 
+constructor, it allows the Thread to execute the run() method of A.
+
+Class B: This class extends Thread. Here, B itself is a thread, and calling start() on an instance 
+of B will execute its run() method.
+
+Why A a = new A(); and a.start(); does not work:
+
+A implements Runnable, not Thread. Therefore, A does not have a start() method. You need to wrap A 
+in a Thread object to start it as a thread. Here's why:
+
+Why Thread t2 = new Thread(new B()); seems to work:
+While this would work, it's redundant because B already extends Thread. Creating a new Thread with B 
+as its target would mean you're creating a thread to run another thread, which isn't necessary. 
+
+----------------------------------------------------------------------------
