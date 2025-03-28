@@ -34,5 +34,6 @@ class Rectangle
 
         Rectangle rect = new Rectangle(length, breadth);
         rect.display();
+        sc.close();
     }
 }

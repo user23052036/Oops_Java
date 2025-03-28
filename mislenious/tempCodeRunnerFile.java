@@ -36,7 +36,7 @@ class Woodbox extends box
         System.out.println("thick :"+thick);
     }
 }
-public class MultiIn 
+public class tempCodeRunnerFile 
 {
     public static void main(String[] args)
     {
@@ -44,8 +44,6 @@ public class MultiIn
         Woodbox w = new Woodbox(34,87,90,45);
         w.show();
         System.out.flush();
-
-
+        sc.close();
     }
-
 }

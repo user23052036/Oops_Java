@@ -17,3 +17,6 @@ While this would work, it's redundant because B already extends Thread. Creating
 as its target would mean you're creating a thread to run another thread, which isn't necessary. 
 
 ----------------------------------------------------------------------------
+
+In Java, the name of a thread is not automatically set to the name of the object used to create it. 
+By default, threads are assigned names like "Thread-0", "Thread-1", etc., unless explicitly named.
