@@ -9,9 +9,9 @@ import java.sql.SQLException;
 //Exception Classes
 //----------------------------------------------------------------------------------------------------
 
-class MinimumBalanceException extends Exception
+class DemoMinimumBalanceException extends Exception
 {
-    MinimumBalanceException(){super();}
+    DemoMinimumBalanceException(){super();}
 
     public String toString()
     {
@@ -83,7 +83,7 @@ public class DemoTransaction
         }
     }
 
-    static int validate_sender(Connection con, int acc_no, String name, int amount) throws AccountNotFoundException,MinimumBalanceException
+    static int validate_sender(Connection con, int acc_no, String name, int amount) throws AccountNotFoundException, DemoMinimumBalanceException
     {
         String query = "SELECT balance FROM Account WHERE acc_no = ? AND UPPER(name) = UPPER(?)";
         int balance=0;
@@ -99,7 +99,7 @@ public class DemoTransaction
                 System.out.println("Sender details validated successfully.");
                 balance = rs.getInt("balance");
 
-                if(balance<amount) throw new MinimumBalanceException();
+                if(balance<amount) throw new DemoMinimumBalanceException();
 
                 System.out.println("Balance found on " + name + "'s account = " + balance);
             } 
@@ -168,7 +168,7 @@ public class DemoTransaction
 
 
     //----------------------------------main method-----------------------------------------
-    public static void main(String[] args) throws AccountNotFoundException,MinimumBalanceException
+    public static void main(String[] args) throws AccountNotFoundException,DemoMinimumBalanceException
     {
         try 
         {

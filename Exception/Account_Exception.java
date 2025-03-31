@@ -1,18 +1,16 @@
 class NegativeAmountException extends Exception
 {
-    NegativeAmountException()
-    {
-        super();
-    }
+    NegativeAmountException() { super(); }
     NegativeAmountException(String message) { super(message); }
 
     @Override
     public String toString() { return "BALANCE CAN NOT BE NEGATIVE!"; }
 }
+
 class MinimumBalanceException extends Exception
 {
-    MinimumBalanceException() {super();}
-    MinimumBalanceException(String message) {super(message);}
+    MinimumBalanceException() { super(); }
+    MinimumBalanceException(String message) { super(message); }
 
     @Override
     public String toString() { return "BALANCE BELOW MINIMUM AMOUNT!"; }
@@ -68,7 +66,7 @@ class Account
 
 class Account_Exception
 {
-    public static void main(String[] args)
+    public static void main(String args[])
     {
         try
         {
