@@ -1,9 +1,6 @@
 class StackFullException extends Exception
  {
-    public StackFullException() 
-    {
-        super();
-    }
+    public StackFullException() { super(); }
     public StackFullException(String message) 
     {
         super(message);
@@ -33,9 +30,9 @@ class StackEmptyException extends Exception
 
 class Stack 
 {
-    private int[] data;    
+    private final int[] data;
     private int top;       
-    private int capacity;  
+    private final int capacity;
 
     Stack(int capacity) 
     {
@@ -68,6 +65,18 @@ class Stack
         for (int i = 0; i <= top; i++)
             System.out.print(data[i] + " ");
         System.out.println();
+    }
+
+    @Override
+    public String toString() {
+        if (top < 0)
+            return "Stack is empty.";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Stack elements: ");
+        for (int i = 0; i <= top; i++) {
+            sb.append(data[i]).append(" ");
+        }
+        return sb.toString();
     }
 }
 

@@ -1,40 +1,27 @@
 class NegativeAmountException extends Exception
 {
-    NegativeAmountException()
-    {
-        super();
-    }
-    NegativeAmountException(String message)
-    {
-        super(message);
-    }
-    public String toString()
-    {
-        return "BALANCE CAN NOT BE NEGATIVE!";
-    }
+    NegativeAmountException() { super(); }
+    NegativeAmountException(String message) { super(message); }
+
+    @Override
+    public String toString() { return "BALANCE CAN NOT BE NEGATIVE!"; }
 }
+
 class MinimumBalanceException extends Exception
 {
-    MinimumBalanceException()
-    {
-        super();
-    }
-    MinimumBalanceException(String message)
-    {
-        super(message);
-    }
-    public String toString()
-    {
-        return "BALANCE BELOW MINIMUM AMOUNT!";
-    }
+    MinimumBalanceException() { super(); }
+    MinimumBalanceException(String message) { super(message); }
+
+    @Override
+    public String toString() { return "BALANCE BELOW MINIMUM AMOUNT!"; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 class Account 
 {
-    private String name;
-    private int accno;
+    private final String name;
+    private final int accno;
     private float balance;
 
     Account()
@@ -45,20 +32,16 @@ class Account
     }
     Account(String name, int accno, float balance) throws NegativeAmountException, MinimumBalanceException 
     {
-        if (balance < 0) 
-        {
-            throw new NegativeAmountException();
-        }
-        if (balance < 1000) 
-        {
-            throw new MinimumBalanceException();
-        }
+        if (name == null || name.isEmpty()) throw new IllegalArgumentException("Account name cannot be empty!");
+        if (balance < 0) throw new NegativeAmountException();
+        if (balance < 1000) throw new MinimumBalanceException();
+
         this.name = name;
         this.accno = accno;
         this.balance = balance;
     }
 
-    void withdraw(float cash) throws NegativeAmountException, MinimumBalanceException 
+    void withdraw(float cash) throws NegativeAmountException, MinimumBalanceException
     {
         if (cash < 0) throw new NegativeAmountException();
         if (balance - cash < 1000) throw new MinimumBalanceException();

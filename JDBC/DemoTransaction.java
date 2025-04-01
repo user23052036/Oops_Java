@@ -83,7 +83,7 @@ public class DemoTransaction
         }
     }
 
-    static int validate_sender(Connection con, int acc_no, String name, int amount) throws AccountNotFoundException,MinimumBalanceException
+    static int validate_sender(Connection con, int acc_no, String name, int amount) throws AccountNotFoundException, MinimumBalanceException
     {
         String query = "SELECT balance FROM Account WHERE acc_no = ? AND UPPER(name) = UPPER(?)";
         int balance=0;
