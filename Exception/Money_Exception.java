@@ -4,17 +4,17 @@
 // 	{super();}
 // 	NegativeMoneyException(String message)
 // 	{super(message);}
-
+//
 // 	public String toString()
 // 	{
 // 		return "CURRENCY CAN NOT BE NEGATIVE";
 // 	}
 // }
-
+//
 // class Money
 // {
 // 	int rupee,paisa;
-
+//
 // 	Money()
 // 	{
 // 		rupee=0;
@@ -26,7 +26,7 @@
 // 		this.rupee=rupee;
 // 		this.paisa=paisa;
 // 	}
-
+//
 // 	Money Add(Money m2) throws NegativeMoneyException
 // 	{
 // 		Money m3;
@@ -37,17 +37,17 @@
 // 			m3.paisa = m3.paisa%100;
 // 		}
 // 		m3.rupee = m3.rupee + rupee +m2.rupee;
-
+//
 // 		if(m3.rupee<0 || m3.paisa<0) throw new NegativeMoneyException();
 // 		return m3;
 // 	}
-
+//
 // 	public void Show()
 // 	{
 // 		System.out.println("Rs."+m3.rupee+"."+m3.paisa+"paisa");
 // 	}
 // }
-
+//
 // class Money_Exception
 // {
 // 	public static void main(String args[])
@@ -56,7 +56,7 @@
 // 		{
 // 			Money m1 = new Money(10,2);
 // 			Money m2 = new Money(12,-2);
-
+//
 // 			Money m3 = new Money();
 // 			m3 = m1.Add(m2);
 // 			m3.Show();
@@ -68,16 +68,12 @@
 // 	}
 // }
 
-
-class NegativeMoneyException extends Exception 
+class NegativeMoneyException extends Exception
 {
-    NegativeMoneyException() 
-	{super();}
-
-    NegativeMoneyException(String message) 
-	{super(message);}
-
-    public String toString() 
+    NegativeMoneyException() {super();}
+    NegativeMoneyException(String message) {super(message);}
+    @Override
+    public String toString()
 	{
         return "CURRENCY CAN NOT BE NEGATIVE";
     }
@@ -125,7 +121,7 @@ class Money
 
 class Money_Exception 
 {
-    public static void main(String args[]) 
+    public static void main(String args[])
 	{
         try 
 		{
