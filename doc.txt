@@ -41,3 +41,7 @@ In summary, while your program may run without issues if you don't close the Sca
 recommended to close it to ensure proper resource management and prevent potential issues in more 
 complex scenarios.
 -------------------------------------------------------------------------------
+
+write psvm , sos ,sop inhand shorcuts use the innitial charecter methods for the common structures in java.
+
+
