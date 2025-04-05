@@ -16,7 +16,7 @@ class SharedData
             catch(InterruptedException e){System.out.println(e.getMessage());}
         }
 
-        data[++counter] = x;
+        data[++counter] = x; 
         System.out.println("Produced: "+data[counter]);
         notify();
     }
