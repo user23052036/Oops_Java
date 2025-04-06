@@ -10,7 +10,7 @@ class SharedData
 
     public synchronized void produce(int x)
     {
-        while(counter == data.length-1)
+        if(counter == data.length-1)
         {
             try{wait();}
             catch(InterruptedException e){System.out.println(e.getMessage());}
