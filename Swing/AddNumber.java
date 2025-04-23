@@ -6,11 +6,11 @@ public class AddNumber extends JFrame implements ActionListener
 {
     private JLabel label1,label2,label3;
     private JTextField txt1,txt2,res;
-    private JButton button;
+    private JButton btn_add,btn_sub,btn_mul,btn_div;
 
     AddNumber()
     {
-        setTitle("ADDER");
+        setTitle("CALCULATOR");
         setSize(200,350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
@@ -27,24 +27,61 @@ public class AddNumber extends JFrame implements ActionListener
 
         label3 = new JLabel("Result: ");
         res = new JTextField(15);
+        res.setEditable(false);
         add(label3);
         add(res);
 
-        button = new JButton(); //can be put inside the constructor string displayed inside the button
-        button.setText("SUM");
-        add(button);
+        btn_add = new JButton(); //can be put inside the constructor string displayed inside the button
+        btn_add.setText("SUM");
+        add(btn_add);
 
-        button.addActionListener(this);
+        btn_sub = new JButton(); 
+        btn_sub.setText("SUB");
+        add(btn_sub);
+
+        btn_mul = new JButton(); 
+        btn_mul.setText("MUL");
+        add(btn_mul);
+
+        btn_div = new JButton(); 
+        btn_div.setText("DIV");
+        add(btn_div);
+
+        btn_add.addActionListener(this);
+        btn_sub.addActionListener(this);
+        btn_mul.addActionListener(this);
+        btn_div.addActionListener(this);
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        int num1 = Integer.parseInt(txt1.getText());
-        int num2 = Integer.parseInt(txt2.getText());
-        int result = num1+num2;
-        res.setText(String.valueOf(result));
+        try
+        {
+            int num1 = Integer.valueOf(txt1.getText());
+            int num2 = Integer.valueOf(txt2.getText());
+            int result=0;
+
+            if(e.getSource() == btn_add)
+                result = num1+num2;
+            else if(e.getSource() == btn_sub)
+                result = num1-num2;
+            else if(e.getSource() == btn_mul)
+                result = num1*num2;
+            else if(e.getSource() == btn_div)
+            {
+                if(num2==0)
+                {
+                    res.setText("error div by 0");
+                    return;
+                }
+                result = num1/num2;
+            }
+            res.setText(String.valueOf(result));
+        } catch(NumberFormatException exp){
+            System.out.println(exp.getMessage());
+        }
     }
 
     public static void main(String[] args) {
