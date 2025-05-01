@@ -82,7 +82,7 @@ class Stack
 
 ////////////////////////////////////////////////////////////////////////
 
-public class Stack_Exception
+public class MyStack_Exception
 {
     public static void main(String[] args) 
     {
