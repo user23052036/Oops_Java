@@ -59,8 +59,11 @@ public class AddNumber extends JFrame implements ActionListener
     {
         try
         {
-            int num1 = Integer.valueOf(txt1.getText());
-            int num2 = Integer.valueOf(txt2.getText());
+            //parseInt ---> string to int
+            //Integer.valueOf --- > string to Integer
+
+            int num1 = Integer.parseInt(txt1.getText()); 
+            int num2 = Integer.parseInt(txt2.getText());
             int result=0;
 
             if(e.getSource() == btn_add)
